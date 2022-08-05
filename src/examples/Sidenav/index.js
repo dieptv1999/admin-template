@@ -1,47 +1,32 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from "react";
 
-// react-router-dom components
 import { useLocation, NavLink } from "react-router-dom";
 
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 
-// @mui material components
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
-
-// Soft UI Dashboard React examples
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
 import SidenavCard from "examples/Sidenav/SidenavCard";
-
-// Custom styles for the Sidenav
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
-
-// Soft UI Dashboard React context
 import { useSoftUIController, setMiniSidenav } from "context";
+import { Avatar } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const AccountStyle = styled('div')(({theme}) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(2, 2.5),
+  borderRadius: Number(theme.shape.borderRadius) * 1.5,
+  backgroundColor: theme.palette.grey[500_12],
+  cursor: 'pointer',
+}));
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useSoftUIController();
@@ -156,20 +141,37 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         </SoftBox>
       </SoftBox>
       <Divider />
+      <SoftBox>
+        <Link href="/profile">
+          <AccountStyle>
+            <Avatar src={'https://mediacloud.mobilelab.vn/2022-06-23/09_43_48-16da7222-9b33-41a7-8d94-1e714d014896.jpeg'} alt="photoURL"/>
+            <SoftBox sx={{ml: 2}}>
+              <SoftTypography variant="subtitle2" sx={{color: 'text.primary'}}>
+                Techlens
+              </SoftTypography>
+              <SoftTypography noWrap variant="body2" sx={{color: 'text.secondary'}}>
+                techlens@gmail.com
+              </SoftTypography>
+            </SoftBox>
+
+          </AccountStyle>
+        </Link>
+      </SoftBox>
+      <Divider />
       <List>{renderRoutes}</List>
       <SoftBox pt={2} my={2} mx={2} mt="auto">
-        <SidenavCard />
+        {/*<SidenavCard />*/}
         <SoftBox mt={2}>
           <SoftButton
             component="a"
-            href="https://creative-tim.com/product/soft-ui-dashboard-pro-react"
+            href="#"
             target="_blank"
             rel="noreferrer"
             variant="gradient"
             color={color}
             fullWidth
           >
-            upgrade to pro
+            Create Post
           </SoftButton>
         </SoftBox>
       </SoftBox>

@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -19,7 +19,7 @@ import CardContent from "@mui/material/CardContent";
 import Icon from "@mui/material/Icon";
 import Link from "@mui/material/Link";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -27,7 +27,7 @@ import SoftTypography from "components/SoftTypography";
 // Custom styles for the SidenavCard
 import { card, cardContent, cardIconBox, cardIcon } from "examples/Sidenav/styles/sidenavCard";
 
-// Soft UI Dashboard React context
+// Techlens Dashboard React context
 import { useSoftUIController } from "context";
 
 function SidenavCard() {

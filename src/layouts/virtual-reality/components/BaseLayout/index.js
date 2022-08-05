@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -21,19 +21,19 @@ import { useLocation } from "react-router-dom";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 
-// Soft UI Dashboard React examples
+// Techlens Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import Sidenav from "examples/Sidenav";
 
-// Soft UI Dashboard React context
+// Techlens Dashboard React context
 import { useSoftUIController, setMiniSidenav, setLayout, setTransparentSidenav } from "context";
 
-// Soft UI Dashboard React routes
+// Techlens Dashboard React routes
 import routes from "routes";
 
 // Custom styles for the BaseLayout
@@ -83,7 +83,7 @@ function BaseLayout({ children }) {
         <SoftBox display={{ xs: "block", lg: "none" }}>
           <Sidenav
             brand={brand}
-            brandName="Soft UI Dashboard PRO"
+            brandName="Techlens Dashboard PRO"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
@@ -94,7 +94,7 @@ function BaseLayout({ children }) {
             <Sidenav
               color={sidenavColor}
               brand={brand}
-              brandName="Soft UI Dashboard PRO"
+              brandName="Techlens Dashboard PRO"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}

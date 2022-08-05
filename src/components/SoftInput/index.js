@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -24,7 +24,7 @@ import SoftInputWithIconRoot from "components/SoftInput/SoftInputWithIconRoot";
 import SoftInputIconBoxRoot from "components/SoftInput/SoftInputIconBoxRoot";
 import SoftInputIconRoot from "components/SoftInput/SoftInputIconRoot";
 
-// Soft UI Dashboard React contexts
+// Techlens Dashboard React contexts
 import { useSoftUIController } from "context";
 
 const SoftInput = forwardRef(({ size, icon, error, success, disabled, ...rest }, ref) => {

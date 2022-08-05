@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -19,11 +19,11 @@ import CountUp from "react-countup";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-// Soft UI Dashboard React base styles
+// Techlens Dashboard React base styles
 import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
 

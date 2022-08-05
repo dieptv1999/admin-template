@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -25,16 +25,16 @@ import PropTypes from "prop-types";
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
-// Soft UI Dashboard React examples
+// Techlens Dashboard React examples
 import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink";
 import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
 
-// Soft UI Dashboard React base styles
+// Techlens Dashboard React base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
 function DefaultNavbar({ transparent, light, action }) {
@@ -93,7 +93,7 @@ function DefaultNavbar({ transparent, light, action }) {
       >
         <SoftBox component={Link} to="/" py={transparent ? 1.5 : 0.75} lineHeight={1}>
           <SoftTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            Soft UI Dashboard
+            Techlens Dashboard
           </SoftTypography>
         </SoftBox>
         <SoftBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>

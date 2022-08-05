@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -23,14 +23,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 
-// Soft UI Dashboard React examples
+// Techlens Dashboard React examples
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
-// Soft UI Dashboard React themes
+// Techlens Dashboard React themes
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
@@ -39,10 +39,10 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
-// Soft UI Dashboard React routes
+// Techlens Dashboard React routes
 import routes from "routes";
 
-// Soft UI Dashboard React contexts
+// Techlens Dashboard React contexts
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
@@ -141,7 +141,7 @@ export default function App() {
             <Sidenav
               color={sidenavColor}
               brand={brand}
-              brandName="Soft UI Dashboard"
+              brandName="Techlens Dashboard"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -165,7 +165,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={brand}
-            brandName="Soft UI Dashboard"
+            brandName="TechLens"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

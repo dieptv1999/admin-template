@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v3.1.0
+* Techlens Dashboard React - v3.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -14,9 +14,9 @@ Coded by www.creative-tim.com
 */
 
 /**
- * The base breakpoints for the Soft UI Dashboard React.
+ * The base breakpoints for the Techlens Dashboard React.
  * You can add new breakpoints using this file.
- * You can customized the breakpoints for the entire Soft UI Dashboard React using thie file.
+ * You can customized the breakpoints for the entire Techlens Dashboard React using thie file.
  */
 
 const breakpoints = {

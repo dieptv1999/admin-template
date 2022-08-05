@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -20,11 +20,11 @@ import PropTypes from "prop-types";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-// Soft UI Dashboard React base styles
+// Techlens Dashboard React base styles
 import typography from "assets/theme/base/typography";
 
 function Footer({ company, links }) {
@@ -99,9 +99,9 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: "https://www.creative-tim.com/", name: "TechLens" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+    { href: "https://www.creative-tim.com/", name: "TechLens" },
     { href: "https://www.creative-tim.com/presentation", name: "About Us" },
     { href: "https://www.creative-tim.com/blog", name: "Blog" },
     { href: "https://www.creative-tim.com/license", name: "License" },

@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import {forwardRef} from 'react';
 import {Box} from '@mui/material';
 
-// ----------------------------------------------------------------------
-
-const Page = forwardRef(({children, title = '', meta, ...other}: any, ref) => (
+const Page = forwardRef(({children, title = '', meta, ...other}, ref) => (
     <>
         <title>{`${title} | NFT`}</title>
         {meta}

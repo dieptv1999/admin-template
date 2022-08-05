@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Soft UI Dashboard React - v4.0.0
+* Techlens Dashboard React - v4.0.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022 TechLens (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -23,7 +23,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
 
-// Soft UI Dashboard React components
+// Techlens Dashboard React components
 import SoftBox from "components/SoftBox";
 
 // Custom styles for the SidenavCollapse
@@ -34,7 +34,7 @@ import {
   collapseText,
 } from "examples/Sidenav/styles/sidenavCollapse";
 
-// Soft UI Dashboard React context
+// Techlens Dashboard React context
 import { useSoftUIController } from "context";
 
 function SidenavCollapse({ color, icon, name, children, active, noCollapse, open, ...rest }) {
