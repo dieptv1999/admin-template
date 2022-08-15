@@ -1,17 +1,17 @@
 /**
-=========================================================
-* Techlens Dashboard React - v4.0.0
-=========================================================
+ =========================================================
+ * Techlens Dashboard React - v4.0.0
+ =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 TechLens (https://www.creative-tim.com)
+ * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
+ * Copyright 2022 TechLens (https://www.creative-tim.com)
 
-Coded by www.creative-tim.com
+ Coded by www.creative-tim.com
 
  =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 
 import { useState, useEffect, useMemo } from "react";
 
@@ -47,6 +47,7 @@ import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "contex
 
 // Images
 import brand from "assets/images/logo-ct.png";
+import constant from "./utils/constant";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -95,6 +96,17 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
+  const publicUrl = ["/authentication/sign-in", "/authentication/sign-up"];
+
+  function withAuth(children) {
+    const token = window.localStorage.getItem(constant.TOKEN);
+    const user = window.localStorage.getItem(constant.USER);
+
+    if (token && user) return children;
+    return <Navigate to="/authentication/sign-in" replace />;
+
+  }
+
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
@@ -102,7 +114,9 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return <Route exact path={route.route}
+                      element={publicUrl.includes(route.route) ? route.component : withAuth(route.component)}
+                      key={route.key} />;
       }
 
       return null;
@@ -153,7 +167,7 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>

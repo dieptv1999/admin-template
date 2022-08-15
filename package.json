@@ -41,6 +41,7 @@
     "@emotion/styled": "11.10.0",
     "@iconify/react": "^3.2.2",
     "@mui/icons-material": "5.8.4",
+    "@mui/lab": "^5.0.0-alpha.94",
     "@mui/material": "5.9.3",
     "@mui/styled-engine": "5.8.7",
     "@testing-library/jest-dom": "5.16.5",

@@ -40,12 +40,13 @@ function SignIn() {
       remember: true,
     },
     validationSchema: LoginSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values, {setSubmitting}) => {
       dispatch(actions.login({
         "username": values?.username,
         "password": values?.password,
       }, () => {
-        setTimeout(() => navigate("/dashboard/app", { replace: true }), 500);
+        setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
+        setSubmitting(false);
       }));
     },
   });
@@ -111,7 +112,7 @@ function SignIn() {
             </SoftTypography>
           </SoftBox>
           <SoftBox mt={4} mb={1}>
-            <SoftButton variant="gradient" color="info" fullWidth type="submit" loading={isSubmitting}>
+            <SoftButton variant="gradient" color="info" fullWidth type="submit" disabled={isSubmitting}>
               sign in
             </SoftButton>
           </SoftBox>

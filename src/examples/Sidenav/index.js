@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
@@ -34,6 +34,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const location = useLocation();
   const { pathname } = location;
   const collapseName = pathname.split("/").slice(1)[0];
+  const navigate = useNavigate();
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
@@ -169,6 +170,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             rel="noreferrer"
             variant="gradient"
             color={color}
+            onClick={() => navigate('/post/create', {replace: false},)}
             fullWidth
           >
             Create Post
