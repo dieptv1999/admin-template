@@ -16,6 +16,8 @@ import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import ReactEditor from "./components/Editor/ReactEditor";
+import Users from "./layouts/user";
+import Posts from "./layouts/posts";
 
 const routes = [
   {
@@ -29,11 +31,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
-    route: "/tables",
+    name: "Users",
+    key: "users",
+    route: "/users",
     icon: <Office size="12px" />,
-    component: <Tables />,
+    component: <Users />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Posts",
+    key: "posts",
+    route: "/posts",
+    icon: <Office size="12px" />,
+    component: <Posts />,
     noCollapse: true,
   },
   {

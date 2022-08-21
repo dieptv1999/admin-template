@@ -1,5 +1,4 @@
-import ReactDOM from "react-dom";
-import React, { Component } from "react";
+import React from "react";
 
 import { createReactEditorJS } from "react-editor-js";
 
@@ -8,11 +7,41 @@ import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import SoftBox from "../SoftBox";
 import Header from "./Header";
 import Page from "../Common/Page";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { useSoftUIController } from "../../context";
 
 const ReactEditorJS = createReactEditorJS();
 
-class ReactEditor extends Component {
-  render() {
+export default function ReactEditor() {
+  const [controller] = useSoftUIController();
+  const { sidenavColor } = controller;
+
+  function submitPost() {}
+
+
+  function submitButton(){
+    return (
+    <SoftBox
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      width="3.5rem"
+      height="3.5rem"
+      bgColor="white"
+      shadow="sm"
+      borderRadius="50%"
+      position="fixed"
+      right="2rem"
+      bottom="7rem"
+      zIndex={99}
+      color="dark"
+      sx={{ cursor: "pointer" }}
+      onClick={submitPost}
+    >
+      <CheckCircleOutlineIcon color={sidenavColor} fontStyle={40} sx={{width: 50,}}/>
+    </SoftBox>
+  )};
+
     return (
       <DashboardLayout>
         <Header />
@@ -139,9 +168,7 @@ class ReactEditor extends Component {
             />
           </SoftBox>
         </Page>
+        {submitButton()}
       </DashboardLayout>
     );
-  }
 }
-
-export default ReactEditor;
