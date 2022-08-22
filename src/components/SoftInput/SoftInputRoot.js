@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 
 export default styled(InputBase)(({ theme, ownerState }) => {
   const { palette, boxShadows, functions, typography, borders } = theme;
-  const { size, error, success, iconDirection, direction, disabled } = ownerState;
+  const { size, error, success, iconDirection, direction, disabled, sx = {} } = ownerState;
 
   const { inputColors, grey, white, transparent } = palette;
   const { inputBoxShadow } = boxShadows;
@@ -146,5 +146,6 @@ export default styled(InputBase)(({ theme, ownerState }) => {
     "&.MuiInputBase-multiline": {
       padding: `${pxToRem(10)} ${pxToRem(12)}`,
     },
+    ...sx,
   };
 });

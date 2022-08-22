@@ -16,7 +16,10 @@ const logout = () => {
     window.location.replace('/login')
 }
 
+const megabytes = (bytes) => bytes * 1000000;
+
 export default {
     getBaseURL,
     logout,
+    megabytes,
 }

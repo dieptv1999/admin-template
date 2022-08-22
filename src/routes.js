@@ -18,6 +18,7 @@ import Cube from "examples/Icons/Cube";
 import ReactEditor from "./components/Editor/ReactEditor";
 import Users from "./layouts/user";
 import Posts from "./layouts/posts";
+import Categories from "./layouts/category";
 
 const routes = [
   {
@@ -49,6 +50,15 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Categories",
+    key: "categories",
+    route: "/categories",
+    icon: <Office size="12px" />,
+    component: <Categories />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
     name: "Billing",
     key: "billing",
     route: "/billing",
@@ -73,24 +83,6 @@ const routes = [
     route: "/profile",
     icon: <CustomerSupport size="12px" />,
     component: <Profile />,
-    noCollapse: true,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    route: "/authentication/sign-in",
-    icon: <Document size="12px" />,
-    component: <SignIn />,
-    noCollapse: true,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    route: "/authentication/sign-up",
-    icon: <SpaceShip size="12px" />,
-    component: <SignUp />,
     noCollapse: true,
   },
   {

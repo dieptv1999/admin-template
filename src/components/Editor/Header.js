@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -20,10 +20,20 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 import burceMars from "assets/images/bruce-mars.jpg";
 import curved0 from "assets/images/curved-images/curved0.jpg";
+import { Modal } from "@mui/material";
+import UploadUppy from "../Common/UploadUppy";
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     // A function that sets the orientation state of the tabs.
@@ -66,6 +76,7 @@ function Header() {
           backgroundPosition: "50%",
           overflow: "hidden",
         }}
+        onClick={() => handleOpen()}
       />
       <Card
         sx={{
@@ -107,14 +118,22 @@ function Header() {
                 onChange={handleSetTabValue}
                 sx={{ background: "transparent" }}
               >
-                <Tab label="App" icon={<Cube />} />
-                <Tab label="Message" icon={<Document />} />
-                <Tab label="Settings" icon={<Settings />} />
+                {/*<Tab label="App" icon={<Cube />} />*/}
+                {/*<Tab label="Message" icon={<Document />} />*/}
+                <Tab label="Change Banner" icon={<Settings />} onClick={handleOpen}/>
               </Tabs>
             </AppBar>
           </Grid>
         </Grid>
       </Card>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <UploadUppy />
+      </Modal>
     </SoftBox>
   );
 }
