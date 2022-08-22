@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
@@ -18,6 +18,7 @@ import constant from "./utils/constant";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
+  const navigate = useNavigate();
   const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
@@ -59,8 +60,14 @@ export default function App() {
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
+    const token = window.localStorage.getItem(constant.TOKEN);
+    if (token && user) {
+      document.documentElement.scrollTop = 0;
+      document.scrollingElement.scrollTop = 0;
+    } else {
+      navigate('/authentication/sign-in', {replace: true})
+    }
+    const user = window.localStorage.getItem(constant.USER);
   }, [pathname]);
 
   const publicUrl = ["/authentication/sign-in", "/authentication/sign-up"];
@@ -70,7 +77,7 @@ export default function App() {
     const user = window.localStorage.getItem(constant.USER);
 
     if (token && user) return children;
-    return <Navigate to="/authentication/sign-in" replace />;
+    return null;
 
   }
 
@@ -81,9 +88,9 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route}
-                      element={publicUrl.includes(route.route) ? route.component : withAuth(route.component)}
-                      key={route.key} />;
+        return (<Route exact path={route.route}
+                       element={publicUrl.includes(route.route) ? route.component : withAuth(route.component)}
+                       key={route.key} />);
       }
 
       return null;
