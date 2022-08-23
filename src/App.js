@@ -61,13 +61,13 @@ export default function App() {
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     const token = window.localStorage.getItem(constant.TOKEN);
+    const user = window.localStorage.getItem(constant.USER);
     if (token && user) {
       document.documentElement.scrollTop = 0;
       document.scrollingElement.scrollTop = 0;
     } else {
       navigate('/authentication/sign-in', {replace: true})
     }
-    const user = window.localStorage.getItem(constant.USER);
   }, [pathname]);
 
   const publicUrl = ["/authentication/sign-in", "/authentication/sign-up"];
