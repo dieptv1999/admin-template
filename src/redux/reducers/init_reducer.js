@@ -1,6 +1,5 @@
 export default (
   state = {
-    inited: false,
     notification: {},
     showNotification: 0,
   }, action,
@@ -9,7 +8,6 @@ export default (
     case '@@__INIT__SUCCEED': {
       return {
         ...state,
-        inited: true,
       };
     }
 

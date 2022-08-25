@@ -1,3 +1,11 @@
 .ce-toolbar__actions {
     right: calc(100% + 30px) !important;
 }
+
+.preview-editor {
+
+}
+
+.preview-editor > * {
+    max-width: 100%;
+}

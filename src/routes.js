@@ -19,6 +19,7 @@ import ReactEditor from "./components/Editor/ReactEditor";
 import Users from "./layouts/user";
 import Posts from "./layouts/posts";
 import Categories from "./layouts/category";
+import CreatePost from "./layouts/posts/CreatePost";
 
 const routes = [
   {
@@ -109,7 +110,7 @@ const routes = [
     key: "create-post",
     route: "/post/create",
     icon: <SpaceShip size="12px" />,
-    component: <ReactEditor />,
+    component: <CreatePost />,
     noCollapse: true,
   },
 ];

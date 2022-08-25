@@ -11,9 +11,9 @@ export default class CategoryRequest extends BaseRequest {
     return this.post(url, params);
   }
 
-  register(params) {
-    const url = `auth/register`;
-    return this.post(url, params);
+  list(params) {
+    const url = `${schema}/list`;
+    return this.get(url, params);
   }
 
   getPermission(params) {

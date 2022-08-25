@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -21,12 +21,13 @@ import breakpoints from "assets/theme/base/breakpoints";
 import burceMars from "assets/images/bruce-mars.jpg";
 import curved0 from "assets/images/curved-images/curved0.jpg";
 import { Modal } from "@mui/material";
-import UploadUppy from "../Common/UploadUppy";
+import UploadDropzone from "../Common/UploadDropzone";
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
   const [open, setOpen] = React.useState(false);
+  const uploadBg = useRef();
 
   const handleOpen = () => {
     setOpen(true);
@@ -70,7 +71,7 @@ function Header() {
           backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
             `${linearGradient(
               rgba(gradients.info.main, 0.6),
-              rgba(gradients.info.state, 0.6)
+              rgba(gradients.info.state, 0.6),
             )}, url(${curved0})`,
           backgroundSize: "cover",
           backgroundPosition: "50%",
@@ -119,8 +120,8 @@ function Header() {
                 sx={{ background: "transparent" }}
               >
                 {/*<Tab label="App" icon={<Cube />} />*/}
-                {/*<Tab label="Message" icon={<Document />} />*/}
-                <Tab label="Change Banner" icon={<Settings />} onClick={handleOpen}/>
+                <Tab label="Submit" icon={<Document />} />
+                <Tab label="Change Banner" icon={<Settings />} onClick={handleOpen} />
               </Tabs>
             </AppBar>
           </Grid>
@@ -132,7 +133,7 @@ function Header() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <UploadUppy />
+        <UploadDropzone ref={uploadBg}/>
       </Modal>
     </SoftBox>
   );

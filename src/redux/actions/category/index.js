@@ -1,8 +1,8 @@
 import {
   CREATE_CATEGORY,
   CREATE_CATEGORY_FAILED,
-  CREATE_CATEGORY_SUCCEED
-} from './action_types';
+  CREATE_CATEGORY_SUCCEED, GET_LIST_CATE, GET_LIST_CATE_SUCCESS,
+} from "./action_types";
 
 export default {
   createCategoryAction: (params, callback) => ({
@@ -21,5 +21,16 @@ export default {
     params: {
       data,
     },
+  }),
+
+
+  getListCateAction: (params, callback) => ({
+    type: GET_LIST_CATE,
+    params,
+    callback
+  }),
+  getListCateSucceedAction: (data) => ({
+    type: GET_LIST_CATE_SUCCESS,
+    params: data,
   }),
 };
