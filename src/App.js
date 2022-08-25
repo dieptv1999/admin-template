@@ -15,6 +15,9 @@ import routes from "routes";
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 import brand from "assets/images/logo-ct.png";
 import constant from "./utils/constant";
+import useNotification from "./hooks/useNotification";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/lab";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -23,6 +26,7 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
+  const {notification, showNotification, closeNotification} = useNotification();
 
   // Cache for the rtl
   useMemo(() => {
@@ -167,6 +171,11 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
+      <Snackbar open={showNotification} autoHideDuration={3000} onClose={closeNotification}>
+        <Alert onClose={closeNotification} severity={notification?.type || 'success'} sx={{ width: '100%' }}>
+          {notification?.message}
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 }

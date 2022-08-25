@@ -1,7 +1,11 @@
 import UserRequest from './UserRequest';
+import CategoryRequest from "./CategoryRequest";
+import PostRequest from "./PostRequest";
 
 const requestMap = {
   UserRequest,
+  CategoryRequest,
+  PostRequest,
 };
 
 const instances = {};

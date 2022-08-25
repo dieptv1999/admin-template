@@ -1,13 +1,13 @@
 import BaseRequest from './BaseRequest';
 
-const schema = 'user';
+const schema = 'category';
 /**
  * key base on host:port
  */
 export default class CategoryRequest extends BaseRequest {
 
-  login(params) {
-    const url = `auth/login`;
+  create(params) {
+    const url = `${schema}/create`;
     return this.post(url, params);
   }
 

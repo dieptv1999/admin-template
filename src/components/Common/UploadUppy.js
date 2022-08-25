@@ -1,15 +1,15 @@
 // import ProgressBar from "@uppy/progress-bar";
-import '@uppy/core/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
+import "@uppy/core/dist/style.css";
+import "@uppy/drag-drop/dist/style.css";
 import Uppy from "@uppy/core";
 import { DragDrop } from "@uppy/react";
 import utils from "../../utils";
 import { Box, styled } from "@mui/material";
-import UploadCard from "./UploadCard";
 import SoftTypography from "../SoftTypography";
 import XHRUpload from "@uppy/xhr-upload";
+import { BASE_URL } from "../../utils/constant";
 
-const XHR_ENDPOINT = "";
+const XHR_ENDPOINT = `${BASE_URL}/upload`;
 
 const StyledDragDrop = styled(DragDrop)`
   .uppy-DragDrop-label {
@@ -18,37 +18,53 @@ const StyledDragDrop = styled(DragDrop)`
 `;
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 700,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   borderRadius: 4,
   boxShadow: 24,
   p: 2,
 };
 
 // eslint-disable-next-line react/prop-types
-function UploadUppy({title = ''}) {
+function UploadUppy({ title = "" }) {
 
   const uppy = new Uppy({
     id: "drag-drop-1",
     meta: { type: "avatar" },
     restrictions: {
       maxTotalFileSize: utils.megabytes(25),
-      maxNumberOfFiles: 2
+      maxNumberOfFiles: 2,
     },
-    autoProceed: true
+    autoProceed: true,
   });
   uppy.on("file-added", (file) => {
     console.log("Added file", file);
+    uppy.setFileMeta(file.id, {
+      size: file.size,
+    })
   });
   uppy.use(XHRUpload, {
     endpoint: XHR_ENDPOINT,
-    limit: 6,
-    bundle: true
+    limit: 1,
+    bundle: true,
+    formData: true,
+    fieldName: "file",
+    method: "post",
+    metaFields: ['size'],
   });
+  uppy.on('upload-success', (file, response) => {
+    const httpStatus = response.status // HTTP status code
+    const httpBody = response.body   // extracted response data
+    console.log(
+      httpBody,
+      httpStatus,
+    )
+    // do something with file and response
+  })
   uppy.on("complete", (result) => {
     if (result.failed.length === 0) {
       console.log("Upload successful üòÄ");
@@ -61,15 +77,15 @@ function UploadUppy({title = ''}) {
 
   return (
     <Box sx={style}>
-      {title && <SoftTypography variant={'h2'}>{title}</SoftTypography>}
+      {title && <SoftTypography variant={"h2"}>{title}</SoftTypography>}
       <StyledDragDrop
         id={"drag-drop-1"}
         uppy={uppy}
         locale={{
           strings: {
             dropHereOr: "Drop here or %{browse}",
-            browse: "select from your computer"
-          }
+            browse: "select from your computer",
+          },
         }}
       />
       {/*<h2>Files added so far</h2>*/}
@@ -86,7 +102,7 @@ function UploadUppy({title = ''}) {
       {/*  })}*/}
       {/*</ul>*/}
     </Box>
-  )
+  );
 }
 
-export default UploadUppy
+export default UploadUppy;

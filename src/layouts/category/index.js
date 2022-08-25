@@ -1,11 +1,23 @@
-import { Link as RouterLink } from 'react-router-dom';
-import { Grid, Button, Container, Stack, Typography } from '@mui/material';
+import { Link, Link as RouterLink } from "react-router-dom";
+import { Grid, Button, Container, Stack, Typography, Modal } from "@mui/material";
 import { faker } from '@faker-js/faker';
 import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
 import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
 import SoftBox from "../../components/SoftBox";
-import { BlogPostCard, BlogPostsSearch, BlogPostsSort } from "../posts/components";
+import { CategoryCard } from "./components";
 import Iconify from "../../components/Common/Iconify";
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Form, Formik } from "formik";
+import SoftTypography from "../../components/SoftTypography";
+import SoftInput from "../../components/SoftInput";
+import ErrorLabelInput from "../../components/SoftInput/ErrorLabelInput";
+import SoftButton from "../../components/SoftButton";
+import UploadUppy from "../../components/Common/UploadUppy";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import actions from "../../redux/actions/category";
+import useNotification from "../../hooks/useNotification";
 
 // ----------------------------------------------------------------------
 
@@ -51,15 +63,79 @@ const POSTS = [...Array(23)].map((_, index) => ({
   },
 }));
 
-const SORT_OPTIONS = [
-  { value: 'latest', label: 'Latest' },
-  { value: 'popular', label: 'Popular' },
-  { value: 'oldest', label: 'Oldest' },
-];
+const CreateCateStyle = styled('div')(({ theme }) => ({
+  backgroundColor: 'white',
+  borderRadius: 8,
+  border: 'none',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 700,
+  // bgcolor: 'background.paper',
+  boxShadow: 24,
+  padding: 16,
+}));
 
 // ----------------------------------------------------------------------
 
 export default function Categories() {
+  const [open, setOpen] = React.useState(false);
+  const [openUpload, setOpenUpload] = React.useState(false);
+  const {showNotificationAction} = useNotification();
+
+  const dispatch = useDispatch();
+
+  function isImage(url) {
+    return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  }
+
+  Yup.addMethod(Yup.string, 'checkImageUrl', function(errorMessage) {
+    // @ts-ignore
+    return this.test('checkImageUrl', errorMessage, function(value) {
+      // @ts-ignore
+      const { path, createError } = this;
+
+      return (
+        isImage(value) ||
+        createError({ path, message: errorMessage })
+      );
+    });
+  });
+
+  const CategorySchema = Yup.object().shape({
+    name: Yup.string()
+      .min(4, "Must be at least 8 characters")
+      .max(30, "Must be less  than 30 characters")
+      .required("Name is required"),
+    description: Yup.string()
+      .min(50, "Must be at least 50 characters")
+      .max(2000, "Must be less  than 2000 characters")
+      .required("Description is required"),
+    background: Yup.string()
+      .checkImageUrl('Invalid Image')
+  });
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpenUpload = () => {
+    setOpenUpload(true);
+  };
+  const handleCloseUpload = () => {
+    setOpenUpload(false);
+  };
+
+  const createCategory = (values) => {
+    dispatch(actions.createCategoryAction(values, () => {
+      showNotificationAction('Create category successful')
+    }))
+  }
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -68,22 +144,96 @@ export default function Categories() {
           <Typography variant="h4" gutterBottom>
             Blog
           </Typography>
-          <Button variant="contained" component={RouterLink} to="/post/create" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Post
+          <Button variant="contained" onClick={handleOpen} startIcon={<Iconify icon="eva:plus-fill" />}>
+            New Category
           </Button>
-        </Stack>
-
-        <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
-          <BlogPostsSearch posts={POSTS} />
-          <BlogPostsSort options={SORT_OPTIONS} />
         </Stack>
 
         <Grid container spacing={3}>
           {POSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
+            <CategoryCard key={post.id} post={post} index={index} />
           ))}
         </Grid>
       </SoftBox>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <CreateCateStyle>
+          <Formik
+            initialValues={{ name: '', description: '', background: '' }}
+            validationSchema={CategorySchema}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+            }}
+          >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+                getFieldProps,
+              }) => (
+                <Form onSubmit={handleSubmit}>
+                  <SoftBox mb={2}>
+                    <SoftTypography>Upload Image</SoftTypography>
+                    <SoftButton variant={'gradient'} onClick={() => handleOpenUpload()}>Select File</SoftButton>
+                  </SoftBox>
+                  <SoftBox mb={2}>
+                    <SoftBox mb={1} ml={0.5}>
+                      <SoftTypography component="label" variant="caption" fontWeight="bold">
+                        Name
+                      </SoftTypography>
+                    </SoftBox>
+                    <SoftInput
+                      type="name"
+                      name="name"
+                      placeholder="Name"
+                      {...getFieldProps("name")}
+                      error={Boolean(touched.name && errors.name)}
+                    />
+                    <ErrorLabelInput variant="body2">{touched.name && errors.name}</ErrorLabelInput>
+                  </SoftBox>
+                  <SoftBox mb={2}>
+                    <SoftBox mb={1} ml={0.5}>
+                      <SoftTypography component="label" variant="caption" fontWeight="bold">
+                        Description
+                      </SoftTypography>
+                    </SoftBox>
+                    <SoftInput
+                      placeholder="Description"
+                      name="description"
+                      {...getFieldProps("description")}
+                      error={Boolean(touched.description && errors.description)}
+                    />
+                    <ErrorLabelInput variant="body2">{touched.description && errors.description}</ErrorLabelInput>
+                  </SoftBox>
+                  <SoftBox mt={4} mb={1}>
+                    <SoftButton variant="gradient" color="info" fullWidth type="submit" disabled={isSubmitting}>
+                      create
+                    </SoftButton>
+                  </SoftBox>
+                </Form>
+            )}
+          </Formik>
+        </CreateCateStyle>
+      </Modal>
+      <Modal
+        open={openUpload}
+        onClose={handleCloseUpload}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        {/*<UploadUppy />*/}
+      </Modal>
     </DashboardLayout>
   );
 }
